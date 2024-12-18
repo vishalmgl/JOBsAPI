@@ -50,18 +50,6 @@ namespace SimpleJobAPI.Controllers
         }
 
 
-        [HttpPost("{jobId}/assign/{userId}")]
-        public async Task<IActionResult> AssignJob(int jobId, int userId)
-        {
-            var job = await _context.Jobs.FindAsync(jobId);
-            var user = await _context.Users.FindAsync(userId);
-
-            if (job == null || user == null) return NotFound();
-
-            var assignment = new JobAssignment { JobID = jobId, UserID = userId };
-            _context.JobAssignments.Add(assignment);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
+        
     }
 }
